@@ -11,6 +11,8 @@ def run_command(mac, commands):
         for cmd in commands[mac]:
             print(f"{mac}: run {cmd.split()}")
             subprocess.Popen(cmd.split())
+    else:
+        print(f"{mac}: no commands to run")
 
 
 def load_commands(filename):
