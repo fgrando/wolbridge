@@ -2,6 +2,7 @@
 import sys
 import csv
 import socket
+import syslog
 import binascii
 import subprocess
 
@@ -9,10 +10,10 @@ import subprocess
 def run_command(mac, commands):
     if mac in commands.keys():
         for cmd in commands[mac]:
-            print(f"{mac}: run {cmd.split()}")
+            syslog.syslog(syslog.LOG_INFO, f"{mac}: run {cmd.split()}")
             subprocess.Popen(cmd.split())
     else:
-        print(f"{mac}: no commands to run")
+        syslog.syslog(syslog.LOG_INFO, f"{mac}: no commands to run")
 
 
 def load_commands(filename):
